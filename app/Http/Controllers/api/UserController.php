@@ -289,21 +289,6 @@ class UserController extends Controller
             } else {
                 $otp = Otp::where(['phone' => $r->phone, 'otp' => $r->otp, 'country_code' => $r->country_code])
                     ->first();
-                // dd($otp);
-
-                //     if( $otp ){
-                //$user =  User::where('phone', $r->phone)->first();
-
-                //    dd($user);
-                //        $token = $user->createToken('API Token')->plainTextToken;
-
-                //        echo "<pre>Token:<br>".$token;
-                //     }
-                //    // dd("sfjlsdkfjlkfjdf");
-                //     $token = $otp->createToken('API Token')->plainTextToken;
-                //     $data = [];
-                //     $data['token'] =  $token;
-
                 if (empty($otp)) {
                     throw new Exception("No otp found");
                 }
