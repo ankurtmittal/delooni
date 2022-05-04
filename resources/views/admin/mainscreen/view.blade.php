@@ -1,10 +1,8 @@
    <div class="card shadow-none border-0" id ="test">
-    <div class="card-header px-0">
-    <h3 class="card-title font-weight-bold">Splash screen</h3>
-</div>
+   
 <!-- /.card-header -->
  <div class="card-body p-0" >
-     <div class="table-responsive">
+     <div class="table-responsive table-bordered">
     <table class="table">
     @if(count($datas)>0)
     <thead>
@@ -48,9 +46,7 @@
     </td>
     </tr>
     @empty
-    <center>
-    <h3> Screen not Available </h3>
-    </center>
+    <h5 class="text-center p-2"> Screen not Available </h5>
     @endforelse
 </tbody>
 </table>

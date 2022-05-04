@@ -56,13 +56,13 @@
           </p>
         </a>
       </li>
-
+ 
      <!--Users Start Here-->
      <li class="nav-item">
         <a href="javascript:void(0)" class="nav-link d-flex">
            <span><i class="nav-icon fa fa-users"></i></span>
           <p>Users</p>
-          <i class="right fa fa-angle-left"></i>
+          <i class="right fa fa-angle-right"></i>
         </a>
         <ul class="nav nav-treeview" style="display: {{ Request::routeIs('customer')|| Request::routeIs('viewserviceprovider') ? 'block' : 'none' }}">
           <li class="nav-item">
@@ -102,7 +102,7 @@
         <a href="javascript:void(0)" class="nav-link d-flex">
            <span><i class="fa fa-twitter nav-icon"></i></span>
           <p>Static content</p>
-          <i class="right fa fa-angle-left"></i>
+          <i class="right fa fa-angle-right"></i>
         </a>
         <ul class="nav nav-treeview" style="display: {{ Request::routeIs('staticcontent')|| Request::routeIs('condition') ? 'block' : 'none' }}">
           <li class="nav-item">
@@ -114,7 +114,7 @@
     
       <li class="nav-item">
             <a href="{{route('condition')}}" class="nav-link  {{ Request::routeIs('condition') ? 'active' : '' }}">
-              <i class="fa fa-disease nav-icon"></i>
+              <i class="fa fa-pencil nav-icon"></i>
               <p>Terms and Condition</p>
             </a>
           </li>
@@ -167,4 +167,4 @@ $(document).ready(function(){
     var parent = $("a.active").parent().parent().parent();
     parent.addClass("menu-is-opening menu-open");
 });
-    </script>
+</script>

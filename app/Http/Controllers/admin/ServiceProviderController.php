@@ -16,7 +16,6 @@ use App\Http\Requests\UpdateServiceProviderRequest;
 use App\Traits\ImageUpload;
 use App\Models\Files;
 use App\Models\Country;
-use App\Models\ServiceDetail;
 use App\Models\Services;
 
 
@@ -30,7 +29,7 @@ class ServiceProviderController extends Controller
      * @return 
      */
     public function ViewServiceProvider(){
-try{
+    try{
         $data = User::role(Role::where('id',User::ROLE_SERVICE_PROVIDER)->value('name'))
                         ->orderBy('id', 'DESC')
                         ->paginate();
@@ -53,8 +52,7 @@ catch (\Throwable $th) {
     public function addformServiceProvider(){
         $categorynames = ServiceCategory::where('is_parent','+','0')->get();  
         $getcountry=Country::get();
-        $getservices=Services::get();
-        return view('admin.serviceprovider.addform',compact('categorynames','getcountry','getservices'));
+        return view('admin.serviceprovider.addform',compact('categorynames','getcountry'));
     }
     
     /*
@@ -106,17 +104,14 @@ catch (\Throwable $th) {
             "brief_of_experience"=>$request->brief_of_experience,
             "user_id" => $user,
         ]);
-        $insert = new ServiceDetail;
-        $insert->service_id=$request->service_category_id;
-        if( isset($request->subcategory) && $request->subcategory != null  ){
-            $insert->service_cat_id = $request->subcategory;
-        } else {
-            $insert->service_cat_id = $request->service_category_id;
-        }
+        $insert = new Services;
+        $insert->cat_id =$request->service_category_id;
+        $insert->sub_cat_id =$request->subcategory;
         $insert->price_per_hour=$request->price_per_hour; 
         $insert->price_per_day=$request->price_per_day;
         $insert->price_per_month=$request->price_per_month;
         $insert->user_id=$user;
+        $insert->created_by=Auth::user()->id;
         $insert->save();
 
         return response()->json(redirect()->back()->with('success', 'New service provider is added Successfully'));
@@ -154,22 +149,17 @@ catch (\Throwable $th) {
      */
 
     public function ViewServiceProviderData($id){ 
-
-        $data=User::select('*')->where('id', '=', $id)->first();
-        $getwork=WorkExperience::select('*')->where('user_id', '=', $id)->first();
-        $geteducation=EducationDetail::select('*')->where('user_id', '=', $id)->first();
-        $getservicedetail=ServiceDetail::select('*')->where('user_id', '=', $id)->first();
-        $serviceid=$getservicedetail->service_id;
-        $getservicename=Services::select('*')->where('id', '=', $serviceid)->first();
-        $servicecatid=$getservicedetail->service_cat_id;
-        $getcatdata=ServiceCategory::select('*')->where('id', '=', $servicecatid)->first();
-        $subcategory=ServiceCategory::select('*')->where('id', '=', $servicecatid)->where('is_parent','=',0)->first();
-        if($subcategory){
-            //  $id=$subcategory->is_parent;
-            $subcategoryname=ServiceCategory::select('*')->where('id', '=',  $id)->first();
-        }
         
-        return view('admin.serviceprovider.detailview',compact('data','getwork','geteducation','getservicedetail','getservicename','getcatdata'));
+        $data=User::select('*')->where('id', '=', $id)->first();
+        $getwork=WorkExperience::where('user_id', '=', $id)->first();
+        $geteducation=EducationDetail::where('user_id', '=', $id)->first();
+        $getservicedetail=Services::where('user_id', '=', $id)->first();
+        $servicecatid=$getservicedetail->cat_id;
+        $getcatdata=ServiceCategory::where('id', '=', $servicecatid)->first();
+        $subcatid=$getservicedetail->sub_cat_id;
+        $subcategory=ServiceCategory::where('id', '=', $subcatid)->first();
+     
+        return view('admin.serviceprovider.detailview',compact('data','getwork','geteducation','getservicedetail','getcatdata','subcategory'));
       
      }
      /**
@@ -222,13 +212,13 @@ catch (\Throwable $th) {
      * @return  update form 
      */
      public function UpdateForm($id){ 
-       $data=User::select('*')->where('id', '=', $id)->first();
-       $geteducation=EducationDetail::select('*')->where('user_id', '=', $id)->first();
-       $getwork=WorkExperience::select('*')->where('user_id', '=', $id)->first();
-       $getservices=Services::select('*')->get();
+       $data=User::where('id', '=', $id)->first();
+       $geteducation=EducationDetail::where('user_id', '=', $id)->first();
+       $getwork=WorkExperience::where('user_id', '=', $id)->first();
+       $getservices=Services::where('user_id', '=', $id)->get();
        $categorynames=ServiceCategory::select('*')->get();
-    //    $getwork=WorkExperience::select('*')->where('user_id', '=', $id)->first();
-        return view('admin.serviceprovider.update',compact('data','getwork','geteducation','getservices','categorynames'));
+    
+       return view('admin.serviceprovider.update',compact('data','getwork','geteducation','getservices','categorynames'));
 
     }
 

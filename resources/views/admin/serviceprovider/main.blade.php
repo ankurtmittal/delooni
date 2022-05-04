@@ -3,11 +3,21 @@
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" style="cursor:pointer;" id="serviceform" >Add</a></li>
                   
-                  <li class="nav-item search-right">
+                  <li class="nav-item search-right hide">
+                 
                    <div>
-                      <div class="input-group" data-widget="sidebar-search">
-                      <input class="form-control form-control-sidebar" id="search" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group" data-widget="sidebar-search" id="searchp">
+                      <input class="form-control form-control-sidebar border-0" id="search" type="search" placeholder="Search" aria-label="Search">
+                      <div class="input-group-append">
+                        <button class="btn btn-sidebar bg-white">
+                          <i class="fa fa-search"></i>
+                        </button>
                       </div>
+                   
+                    </div> 
+                    <div style="display:none" id="back">
+                  @include('admin.serviceprovider.back')
+                  </div>                    
                    </div>
                   </li>
                 </ul>
@@ -216,6 +226,8 @@ $(document).on('click','.remove',function(){
 });
 
 $(document).on("click", "#serviceform", function(){
+  $('#searchp').hide();
+  $('#back').show();
   $(".error").html("");
   $("#createprovider").trigger("reset");
   
@@ -223,6 +235,7 @@ $(document).on("click", "#serviceform", function(){
 
   //update form on update button 
   $('.updateserviceprovider').on('click',function(e){ 
+  $('.card-header.p-2.yellow-bg.menu-is-opening.menu-open').hide();
    e.preventDefault();
    var id=$(this).attr("data-userid");
    console.log(id);
@@ -250,7 +263,7 @@ $(document).on("click", "#serviceform", function(){
 });
 //ajax for subcategory
 $(document).on('change','#service_category_id',function(e){
-            //  alert();
+          
             var id = e.target.value;
             console.log(id);
             var url = '{{ route("provider.category", ":id") }}';
@@ -285,5 +298,6 @@ $(document).on('change','#service_category_id',function(e){
           }
 });
 });
+
 
 </script>

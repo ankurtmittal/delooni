@@ -20,21 +20,15 @@
                       </div>
                       @else
                       @endif
-                      <div class="form-group row">
-                        <label for="service_category_image" class="col-sm-12 col-form-label">Category Image</label>
+                    <label for="service_category_image" class="col-sm-12 col-form-label">Uploaded image</label>
                         <div class="col-sm-12">
-                        <!-- <img src="{{URL::to('/')}}/profile_image/{{$categoryData->service_category_image}}"> -->
-                          <input type="file" class="form-control"  value="{{$categoryData->service_category_image}}" id="service_category_image" name="service_category_image">
-                          <div class="error" id="error_service_category_image">
-                          </div>
-                        <label for="service_category_image" class="col-sm-12 col-form-label">Uploaded image</label>
-                        <div class="col-sm-12">
-                          <img src="{{URL::to('/')}}/profile_image/{{$categoryData->service_category_image}}">
+                          <img class="lazyload mb-3" src="{{URL::to('/')}}/profile_image/{{$categoryData->service_category_image}}">
                           <input type="file" class="form-control" id="service_category_image" name="service_category_image" accept="image/*">
                          <div class="error" id="error_service_category_image"></div>
                         </div>
                       </div>
-                   <div class="form-group row mb-0">
+                    </div>
+                   <div class="form-group row mb-0 mt-4">
                         <div class="col-sm-12 text-center">
                           <button type="submit" class="btn app-button">Submit</button>
                           <button type="reset" class="btn btn-danger">Reset</button>

@@ -26,7 +26,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4 black-bg">
     <!-- Brand Logo -->
-    <a href="{{url('/admin/home')}}" class="brand-link text-center black-bg">
+    <a href="" class="brand-link text-center black-bg">
       <span>
         <img src="{{URL::to('/')}}/images/delooni-logo-text.svg" alt="Glitter Logo" class="brand-image mx-auto float-none">
      </span>
@@ -40,9 +40,9 @@
       <!-- Sidebar user panel (optional) -->
       @include('admin.layout.user_panel')
       <!-- /.Sidebar user panel -->
-
+      @include('templates.sidebar_search') 
       <!-- SidebarSearch Form (optional) -->
-      @include('templates.sidebar_search')
+      <!-- @include('templates.sidebar_search') -->
       <!-- /.SidebarSearch Form  -->
 
     @include('admin.layout.sidebar')

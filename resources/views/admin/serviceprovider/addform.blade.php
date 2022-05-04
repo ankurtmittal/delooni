@@ -73,23 +73,47 @@
             </div>
         </div>
     
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <div class="form-group">
-                <label for="img">Upload image</label>
-                <input type="file" class="form-control" id="img" name="img" accept="image/*">
-                <div class="error" id="error_img">
-                </div>
+                <label class="col-form-label" for="img">Upload image</label>
+                <input type="file" class="form-control choose-file-box" id="img" name="img" accept="image/*">
+                <div class="error" id="error_img"></div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="img">Upload Video(Brief of Service provider)</label>
+<<<<<<< HEAD
+                <label>Upload image</label>
+                <input type="file" class="form-control" id="img" name="img" accept="image/*">
+                <div class="error" id="error_img">
+                </div>
+=======
+                <label for="screen_baner_image" class="col-sm-12 col-form-label">Upload image</label>
+                <div class="choose-file-box-col">
+                <input type="file" class="form-control choose-file-box" id="img" ame="img" accept="image/*">
+                <div class="error" id="error_img"></div>
+            </div>
+            </div>
+        </div> 
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="screen_baner_image" class="col-sm-12 col-form-label">Upload Video(Brief of Service provider)</label>
+                <div class="choose-file-box-col">
+                <input type="file" class="form-control choose-file-box" id="video" name="video" accept="video/*">
+                <div class="error" id="error_video"></div></div>
+>>>>>>> 9b236b025a42befcf9e014fe1f3bd86f5da5fc90
+            </div>
+        </div>
+
+        {{-- <div class="col-md-6">
+            <div class="form-group">
+                <label>Upload Video(Brief of Service provider)</label>
                 <input type="file" class="form-control" id="video" name="video" accept="video/*">
                 <div class="error" id="error_video">
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="col-md-6">
             <div class="form-group">
@@ -176,7 +200,7 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="License photo">License Photo</label>
+                <label>License Photo</label>
                 <input type="file" accept="image/*" class="form-control" id="licensephoto" name="licensephoto"
                     placeholder="Enter Your License Photo ">
                 <div class="error" id="error_licensephoto">
@@ -209,29 +233,16 @@
             <div class="row">
                 <div class="col-md-12 mb-2">
                    <h4>Service Details</h4>
-                </div> 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="service_category_id" class="col-md-6 col-form-label">Select Services </label>
-                        <select class="form-control select2" id="service_services" name="service_services">
-                        <option value="N/A" disabled selected="true">--Select Services--</option>
-                        @foreach($getservices as $getservice)
-                        <option class="form-drop-items" value="{{$getservice->id}}">{{$getservice->name}}</option>
-                         @endforeach
-                       </select>
-                        <div class="error" id="error_service_services">
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="service_category_id" class="col-md-6 col-form-label">Select category </label>
                         <select class="form-control select2" id="service_category_id" name="service_category_id">
                         <option value="N/A" disabled selected="true">--Select category--</option>
-                       @foreach($categorynames as $categoryname)
-                      <option class="form-drop-items" value="{{$categoryname->id}}">{{$categoryname->name}}</option>
+                        @foreach($categorynames as $categoryname)
+                        <option class="form-drop-items" value="{{$categoryname->id}}">{{$categoryname->name}}</option>
                         @endforeach
-                       </select>
+                        </select>
                         <div class="error" id="error_service_category_id">
                         </div>
                     </div>
@@ -256,7 +267,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="price_per_day" >Service Price(/days) </label>
+                    <label for="price_per_day" >Service Price(/days)</label>
                     <input type="text" class="form-control" id="price_per_day" name="price_per_day" placeholder="Service Price per day">
                           <div class="error" id="error_price_per_day">
                         </div>
@@ -264,7 +275,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="price_per_month" >Service Price(/month) </label>
+                    <label for="price_per_month" >Service Price(/month)</label>
                     <input type="text" class="form-control" id="price_per_month" name="price_per_month" placeholder="Service Price per month">
                           <div class="error" id="error_price_per_month">
                          </div>
@@ -315,8 +326,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="col-md-12 mb-3">
             <h4>Work Experience</h4>
